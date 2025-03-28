@@ -1,5 +1,7 @@
-# Adaptive Lasso
-
+<div align="center">
+  <img src="https://raw.githubusercontent.com/ErikHartman/adalasso/main/sklearn_logo.png" alt="scikit-learn logo" width="200"/>
+  <h1>Adaptive Lasso</h1>
+</div>
 
 [![PyPI version](https://img.shields.io/pypi/v/adalasso.svg)](https://pypi.org/project/adalasso/)
 [![Tests](https://github.com/ErikHartman/adalasso/actions/workflows/tests.yml/badge.svg)](https://github.com/ErikHartman/adalasso/actions/workflows/tests.yml)
@@ -73,13 +75,13 @@ pytest --cov=adalasso adalasso/tests/
 
 The following figure shows how coefficients evolve with different regularization strengths for standard Lasso versus Adaptive Lasso:
 
-![Adaptive Lasso Regularization Path](adaptive_lasso_regularization_path.png)
+![Adaptive Lasso Regularization Path](https://raw.githubusercontent.com/ErikHartman/adalasso/main/adaptive_lasso_regularization_path.png)
 
 ### Feature Selection Performance
 
 This figure demonstrates how Adaptive Lasso performs better at selecting the correct number of non-zero features across different regularization strengths:
 
-![Feature Selection vs Regularization](adaptive_lasso_feature_count.png)
+![Feature Selection vs Regularization](https://raw.githubusercontent.com/ErikHartman/adalasso/main/adaptive_lasso_feature_count.png)
 
 ## References
 

@@ -12,6 +12,7 @@ __pycache__/
 *.png
 !adaptive_lasso_feature_count.png
 !adaptive_lasso_regularization_path.png
+!sklearn_logo.png
 
 PYPI_UPLOAD.md
 

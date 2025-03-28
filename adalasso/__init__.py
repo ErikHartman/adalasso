@@ -5,5 +5,6 @@ of the coefficients.
 """
 
 from ._adaptive_lasso import AdaptiveLasso
+from .adalasso_path import adalasso_path
 
-__all__ = ["AdaptiveLasso"]
+__all__ = ["AdaptiveLasso", "adalasso_path"]
