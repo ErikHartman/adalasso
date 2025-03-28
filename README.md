@@ -6,7 +6,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/adalasso.svg)](https://pypi.org/project/adalasso/)
 [![Tests](https://github.com/ErikHartman/adalasso/actions/workflows/tests.yml/badge.svg)](https://github.com/ErikHartman/adalasso/actions/workflows/tests.yml)
 
-A scikit-learn compatible implementation of the Adaptive Lasso algorithm for feature selection and regression.
+*A scikit-learn compatible implementation of the Adaptive Lasso algorithm for feature selection and regression.*
 
 ## Overview
 
