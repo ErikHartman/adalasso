@@ -1,5 +1,8 @@
 # Adaptive Lasso
 
+
+[![PyPI version](https://img.shields.io/pypi/v/adalasso.svg)](https://pypi.org/project/adalasso/)
+
 A scikit-learn compatible implementation of the Adaptive Lasso algorithm for feature selection and regression.
 
 ## Overview
@@ -46,6 +49,22 @@ print("Intercept:", model.intercept_)
 - `tol`: Tolerance for optimization
 
 See the class documentation for a full list of parameters.
+
+## Development
+
+### Running Tests
+
+To run the tests, you'll need to install the development dependencies:
+
+```bash
+pip install pytest pytest-cov
+```
+
+Then run the tests with:
+
+```bash
+pytest --cov=adalasso adalasso/tests/
+```
 
 ## Visualization Examples
 
