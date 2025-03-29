@@ -7,7 +7,6 @@ from adalasso import AdaptiveLasso
 
 def test_adaptive_lasso_basic():
     """Test basic functionality of AdaptiveLasso."""
-    # Generate synthetic data with known sparse structure
     X, y = make_regression(
         n_samples=100, 
         n_features=20, 

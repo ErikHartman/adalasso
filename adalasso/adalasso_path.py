@@ -1,6 +1,7 @@
 import numpy as np
 from ._adaptive_lasso import AdaptiveLasso
 
+
 def adalasso_path(
     X,
     y,
@@ -13,12 +14,11 @@ def adalasso_path(
     fit_intercept=True,
     normalize=False,
     copy_X=True,
-    warm_start=False,
     positive=False,
     random_state=None,
     initial_ridge_alpha=0.1,
     max_weight=100.0,
-    weight_epsilon=1e-6
+    weight_epsilon=1e-6,
 ):
     """
     Compute the Adaptive Lasso path by iterating over a sequence of alphas.
@@ -80,24 +80,20 @@ def adalasso_path(
     n_samples = X.shape[0]
     if alphas is None:
         # alpha_max for standard Lasso is the smallest alpha that sets all coefs to zero
-        # i.e., alpha_max = (1/n_samples) * max|X^T y|.
-        # We can use the same approach here as a starting point.
         alpha_max = np.max(np.abs(X.T @ y)) / (n_samples)
         if alpha_max < np.finfo(float).eps:
-            alpha_max = 1e-3  # fallback
+            alpha_max = 1e-3
         alpha_min = eps * alpha_max
         alphas = np.logspace(np.log10(alpha_max), np.log10(alpha_min), n_alphas)
     else:
-        alphas = np.sort(alphas)[::-1]  # ensure descending
+        alphas = np.sort(alphas)[::-1]
 
-    # Prepare storage for coefficients
     n_features = X.shape[1]
     coefs = np.empty((n_features, len(alphas)), dtype=float)
-    dual_gaps = [None] * len(alphas)  # placeholders, as we're not computing them
+    dual_gaps = [None] * len(alphas)
 
     # -----------------------------------------------------------------------
     # 2) For each alpha in the grid, fit a new AdaptiveLasso and store the coefficients
-    # Adjust if you need a different import path or put `AdaptiveLasso` in the same file.
 
     for i, alpha_ in enumerate(alphas):
         model = AdaptiveLasso(
@@ -108,7 +104,6 @@ def adalasso_path(
             fit_intercept=fit_intercept,
             normalize=normalize,
             copy_X=copy_X,
-            warm_start=warm_start,
             positive=positive,
             random_state=random_state,
             initial_ridge_alpha=initial_ridge_alpha,
@@ -116,15 +111,7 @@ def adalasso_path(
             weight_epsilon=weight_epsilon,
         )
 
-        # If you want to pass the previous solution as a warm start, you'd have to
-        # modify the AdaptiveLasso class to respect an externally set coef_.
-        # The provided class doesn't do that out-of-the-box.
-        # model.coef_ = previous_coef
-
         model.fit(X, y)
         coefs[:, i] = model.coef_
-
-        # Save the current coef if you want to pass it as warm start to the next iteration.
-        previous_coef = model.coef_
 
     return alphas, coefs, dual_gaps

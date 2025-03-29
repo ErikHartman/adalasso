@@ -72,17 +72,13 @@ class AdaptiveLasso(BaseEstimator, RegressorMixin):
         ridge = Ridge(alpha=self.initial_ridge_alpha, fit_intercept=False)
         ridge.fit(X_centered, y_centered)
         initial_coefs = np.abs(ridge.coef_)
-
-        # Avoid extremely small values
         initial_coefs = np.maximum(initial_coefs, self.weight_epsilon)
 
         # Step 2: Compute adaptive weights
         weights = 1.0 / (initial_coefs ** self.gamma)
 
-        # Cap adaptive weights to prevent numerical instability
+        # Cap and normalize adaptive weights to prevent numerical instability
         weights = np.minimum(weights, self.max_weight)
-
-        # (Optional) Normalize weights for numerical stability
         weights /= np.mean(weights)
 
         # Transform features according to adaptive weights
